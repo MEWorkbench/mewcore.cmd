@@ -7,7 +7,6 @@ import java.util.List;
 import pt.uminho.ceb.biosystems.mew.core.cmd.searchtools.SimulationMethodsEnum;
 import pt.uminho.ceb.biosystems.mew.core.model.components.EnvironmentalConditions;
 import pt.uminho.ceb.biosystems.mew.core.simulation.components.FluxValueMap;
-import pt.uminho.ceb.biosystems.mew.solvers.SolverType;
 import pt.uminho.ceb.biosystems.mew.utilities.io.Delimiter;
 
 public class SimulationConfiguration extends ModelConfiguration {
@@ -41,10 +40,10 @@ public class SimulationConfiguration extends ModelConfiguration {
 		
 	}
 	
-	public SolverType getSimulationSolver() {
+	public String getSimulationSolver() {
 		String tag = getProperty(SIM_SOLVER, currentState, true);
 		if (tag != null)
-			return SolverType.valueOf(tag.toUpperCase());
+			return tag.toUpperCase();
 		else
 			return null;
 	}

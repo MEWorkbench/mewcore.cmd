@@ -7,8 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.security.auth.login.Configuration;
-
 import pt.uminho.ceb.biosystems.jecoli.algorithm.AlgorithmTypeEnum;
 import pt.uminho.ceb.biosystems.mew.core.cmd.searchtools.configuration.OptimizationConfiguration;
 import pt.uminho.ceb.biosystems.mew.core.model.components.EnvironmentalConditions;
@@ -20,8 +18,6 @@ import pt.uminho.ceb.biosystems.mew.core.strainoptimization.controlcenter.Strain
 import pt.uminho.ceb.biosystems.mew.core.strainoptimization.objectivefunctions.IObjectiveFunction;
 import pt.uminho.ceb.biosystems.mew.core.strainoptimization.optimizationresult.IStrainOptimizationResultSet;
 import pt.uminho.ceb.biosystems.mew.core.strainoptimization.strainoptimizationalgorithms.jecoli.JecoliOptimizationProperties;
-import pt.uminho.ceb.biosystems.mew.solvers.SolverType;
-import pt.uminho.ceb.biosystems.mew.solvers.lp.CplexParamConfiguration;
 import pt.uminho.ceb.biosystems.mew.utilities.datastructures.map.indexedhashmap.IndexedHashMap;
 import pt.uminho.ceb.biosystems.mew.utilities.java.TimeUtils;
 
@@ -45,9 +41,9 @@ public class ClusterRunner {
 		
 		//legacy support for mergeSort when using java 7
 		System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
-		CplexParamConfiguration.setDoubleParam("EpRHS", 1e-9);
-		CplexParamConfiguration.setWarningStream(null);
-		
+//		CplexParamConfiguration.setDoubleParam("EpRHS", 1e-9);
+//		CplexParamConfiguration.setWarningStream(null);
+//		
 		_baseName = (_baseName == null) ? generateOutputFileName(_configuration) + ClusterConstants.DEFAULT_NAME_CONNECTOR + "run" : _baseName + ClusterConstants.DEFAULT_NAME_CONNECTOR + "run" + _run;
 		
 		StrainOptimizationControlCenter cc = new StrainOptimizationControlCenter();
@@ -56,7 +52,7 @@ public class ClusterRunner {
 		EnvironmentalConditions envConditions = _configuration.getEnvironmentalConditions();
 		Boolean isMaximization = true; // always maximization, objective functions will deal with specific objective senses on their own
 		Boolean isOverUnder2stepApproach = _configuration.isOverUnder2stepApproach();
-		SolverType solver = _configuration.getSimulationSolver();
+		String solver = _configuration.getSimulationSolver();
 		Map<String, Double> of = new HashMap<>();
 		of.put(model.getBiomassFlux(), 1.0);
 		
@@ -177,18 +173,5 @@ public class ClusterRunner {
 	
 	public void setRun(int run) {
 		_run = run;
-	}
-	
-	public static void main(String... args) {
-		try {
-			OptimizationConfiguration configuration = new OptimizationConfiguration(
-					"model.conf");
-			configuration.setCurrentState(0);
-			ClusterRunner runner = new ClusterRunner(configuration);
-			runner.run();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	}	
 }
