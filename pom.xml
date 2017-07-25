@@ -4,17 +4,65 @@
 
 	<groupId>pt.uminho.ceb.biosystems.mew</groupId>
 	<artifactId>mew-core-cmd</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>mewcore.cmd</name>
-	<url>http://maven.apache.org</url>
+	<description>CommandLine tools for MEWorkbench</description>
+	<url>https://github.com/MEWorkbench/mewcore.cmd</url>
+	
+	<developers>
+		<developer>
+			<name>Paulo Maia</name>
+			<email>pmaia@silicolife.com</email>
+			<organization>SilicoLife Lda</organization>
+			<organizationUrl>http://www.silicolife.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Pedro Evangelista</name>
+			<email>pevangelista@silicolife.com</email>
+			<organization>SilicoLife Lda</organization>
+			<organizationUrl>http://www.silicolife.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Paulo Vilaca</name>
+			<email>hgiesteira@silicolife.com</email>
+			<organization>SilicoLife Lda</organization>
+			<organizationUrl>http://www.silicolife.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Hugo Giesteira</name>
+			<email>hgiesteira@silicolife.com</email>
+			<organization>SilicoLife Lda</organization>
+			<organizationUrl>http://www.silicolife.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Miguel Rocha</name>
+			<email>mrocha@di.uminho.pt</email>
+			<organization>University of Minho</organization>
+			<organizationUrl>https://www.uminho.pt</organizationUrl>
+		</developer>
+	</developers>
+	
+	<licenses>
+		<license>
+			<name>LGPLv2.1</name>
+			<url>https://www.gnu.org/licenses/lgpl-2.1.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
+		<meworkbench.version>1.0.0-SNAPSHOT</meworkbench.version>
 	</properties>
+	
+	<scm>
+		<developerConnection>${project.scm.devcon}</developerConnection>
+		<url>https://github.com/MEWorkbench/mewcore.cmd</url>
+	</scm>
 
 	<dependencies>
 		<dependency>
@@ -23,18 +71,75 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>pt.uminho.ceb.biosystems.mew</groupId>
 			<artifactId>mew-core</artifactId>
-			<version>0.0.3-SNAPSHOT</version>
+			<version>${meworkbench.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>pt.uminho.ceb.biosystems.mew</groupId>
 			<artifactId>mew-solvers-cplex</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
+			<version>${meworkbench.version}</version>
 		</dependency>
 
 	</dependencies>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.18.1</version>
+				<configuration>
+					<skipTests>${skipTests}</skipTests>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<additionalparam>-Xdoclint:none</additionalparam>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+						<configuration>
+							<skip>${project.sign.skip}</skip>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	
 </project>
