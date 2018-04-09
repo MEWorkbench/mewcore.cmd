@@ -3,7 +3,7 @@
 
 	<groupId>pt.uminho.ceb.biosystems.mew</groupId>
 	<artifactId>mew-core-cmd</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>mewcore.cmd</name>
@@ -56,7 +56,7 @@
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<project.sign.skip>true</project.sign.skip>
-		<meworkbench.version>1.0.0</meworkbench.version>
+		<meworkbench.version>1.0.1</meworkbench.version>
 	</properties>
 	
 	<scm>
