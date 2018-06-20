@@ -3,7 +3,7 @@
 
 	<groupId>pt.uminho.ceb.biosystems.mew</groupId>
 	<artifactId>mew-core-cmd</artifactId>
-	<version>1.0.2-SNAPSHOT</version>
+	<version>${meworkbench.version}</version>
 	<packaging>jar</packaging>
 
 	<name>mewcore.cmd</name>
@@ -141,5 +141,22 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+		<!-- 	<repositories> -->
+<!-- 		<repository> -->
+<!-- 			<id>snapshots</id> -->
+<!-- 			<name>maven snapshots repo</name> -->
+<!-- 			<url>https://oss.sonatype.org/content/repositories/snapshots</url> -->
+<!-- 		</repository> -->
+<!-- 	</repositories> -->
+
+	<distributionManagement>
+		<repository>
+			<id>oss.sonatype.org</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+		<snapshotRepository>
+			<id>oss.sonatype.org</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 </project>
